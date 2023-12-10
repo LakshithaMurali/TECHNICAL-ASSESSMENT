@@ -1,4 +1,4 @@
-def findTotalValue(food, people):
+def findBestValue(food, people):
     n = len(food)
     prefix_sum = [0] * (n + 1)
     for i in range(n):
