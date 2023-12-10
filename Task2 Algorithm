@@ -1,0 +1,34 @@
+data = [
+    {"06/10/2021": [6.8505, 0.2667, 7.6672, 0.2634, 7.6638, 0.4267, 6.8471, 0.4267]},
+    {"Company": [1.3234, 0.6234, 1.9968, 0.6267, 1.9801, 0.8167, 1.3201, 0.8034]},
+    ....
+    {"1": [7.7105, 11.1811, 7.7839, 11.1811, 7.7839, 11.2877, 7.7105, 11.2877]}
+]
+
+# Assumptions
+invoice_date_key = "06/10/2021"
+invoice_number_key = "INVO-005"
+billing_information_keys = ["Address", "111 Pine Street, Suite 1815, San Francisco, CA, 94111"]
+shipping_information_keys = ["Address", "111 Pine Street, Suite 1815, San Francisco, CA, 94111"]
+email_key = "John@example.com"
+total_invoice_amount_key = "Total"
+number_of_items_key = "Product/Service"
+
+# Extracting information
+invoice_date = data[0].get(invoice_date_key, "N/A")
+invoice_number = data[2].get(invoice_number_key, "N/A")
+billing_information = ", ".join(data[-4].get(key, "") for key in billing_information_keys)
+shipping_information = ", ".join(data[-2].get(key, "") for key in shipping_information_keys)
+email = data[-3].get(email_key, "N/A")
+total_invoice_amount = data[-1].get(total_invoice_amount_key, "N/A")
+number_of_items = sum(1 for entry in data if number_of_items_key in entry)
+
+# Displaying extracted information
+print("Invoice Date:", invoice_date)
+print("Invoice Number:", invoice_number)
+print("Billing Information:", billing_information)
+print("Shipping Information:", shipping_information)
+print("Email:", email)
+print("Total Invoice Amount:", total_invoice_amount)
+print("Number of Items in the Invoice:", number_of_items)
+
